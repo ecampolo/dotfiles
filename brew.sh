@@ -27,8 +27,6 @@ brew install git
 brew install less
 brew install openssh
 brew install rsync
-brew install svn
-brew install unzip
 brew install vim --with-override-system-vi
 
 # Install Bash 4.
@@ -44,17 +42,16 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
-# Install other useful binaries.
 brew install tree
 brew install maven
-
-# Cask packages
 brew cask install tunnelblick
 brew cask install intellij-idea-ce
 brew cask install visual-studio-code
 brew cask install google-chrome
 brew cask install docker
 brew cask install iterm2
+brew install mysql
+brew cask install mysqlworkbench
 
 # Remove outdated versions from the cellar.
 brew cleanup
