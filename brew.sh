@@ -42,6 +42,7 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
+brew cask install java
 brew install tree
 brew install maven
 brew cask install tunnelblick
@@ -52,6 +53,6 @@ brew cask install docker
 brew cask install iterm2
 brew install mysql
 brew cask install mysqlworkbench
-
+brew cask install sequel-pro
 # Remove outdated versions from the cellar.
 brew cleanup
