@@ -15,23 +15,28 @@ brew install coreutils
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+# Install GNU tools without `g`-prefixed.
 brew install findutils --with-default-names
-
-# Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
 brew install gnu-tar --with-default-names
 brew install gnu-which --with-default-names
-
-# Install more recent versions of some macOS tools.
-brew install homebrew/dupes/grep --with-default-names
+brew install grep --with-default-names
+brew install watch
+brew install wget
+brew install git
+brew install less
+brew install openssh
+brew install rsync
+brew install svn
+brew install unzip
+brew install vim --with-override-system-vi
 
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
 brew install bash
-brew tap homebrew/versions
-brew install bash-completion2
+brew install bash-completion@2
+brew install shellcheck
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
@@ -39,16 +44,17 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
-
-# Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
-
 # Install other useful binaries.
-brew install git
 brew install tree
 brew install maven
+
+# Cask packages
+brew cask install tunnelblick
+brew cask install intellij-idea-ce
+brew cask install visual-studio-code
+brew cask install google-chrome
+brew cask install docker
+brew cask install iterm2
 
 # Remove outdated versions from the cellar.
 brew cleanup
