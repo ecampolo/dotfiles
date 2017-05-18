@@ -42,6 +42,11 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
+# You may wish to add the GOROOT-based install location to your PATH.
+# Probaly by exporting the variable into .path file that will be source by .bash_profile
+# export PATH=$PATH:/usr/local/opt/go/libexec/bin
+brew install go
+brew cask install gogland
 brew cask install java
 brew install tree
 brew install maven
