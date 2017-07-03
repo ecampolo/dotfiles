@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tomasr/molokai'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
