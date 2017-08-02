@@ -53,6 +53,7 @@ brew cask install minikube
 brew install go
 brew cask install gogland
 brew cask install java
+brew install leiningen
 brew install kotlin
 brew install tree
 brew install maven
