@@ -66,5 +66,6 @@ brew cask install iterm2
 brew install mysql
 brew cask install mysqlworkbench
 brew cask install sequel-pro
+brew install ripgrep
 # Remove outdated versions from the cellar.
 brew cleanup

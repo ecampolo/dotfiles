@@ -9,8 +9,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
+Plug 'mhinz/vim-startify'
+Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
+
+" General
+"
+set history=500
 
 " Indentation
 "
@@ -38,15 +44,36 @@ let g:airline_theme='molokai'
 
 " Functions
 "
-function! StripWhitespace()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  :%s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
-endfunction
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.java,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
 
 " Mappings
 "
-let mapleader=","
-noremap <leader>ss :call StripWhitespace()<CR>
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" map ctrl+p to fzf
+map <C-p> :Files<cr>
+
+" map ctrl+o to ripgrep
+map <C-o> :Rg
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+noremap <leader>ss :call CleanExtraSpaces()<CR>
