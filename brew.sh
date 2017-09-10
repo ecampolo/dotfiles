@@ -21,6 +21,7 @@ brew install gnu-sed --with-default-names
 brew install gnu-tar --with-default-names
 brew install gnu-which --with-default-names
 brew install grep --with-default-names
+brew install gnu-indent --with-default-names
 brew install watch
 brew install wget
 brew install git
@@ -43,9 +44,9 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
 fi;
 
 #Minikube packages
-brew cask install virtualbox
-brew install kubectl
-brew cask install minikube
+#brew cask install virtualbox
+#brew install kubectl
+#brew cask install minikube
 
 # You may wish to add the GOROOT-based install location to your PATH.
 # Probaly by exporting the variable into .path file that will be source by .bash_profile
