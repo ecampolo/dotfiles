@@ -27,7 +27,6 @@ brew install wget
 brew install git
 brew install less
 brew install openssh
-brew install rsync
 brew install vim --with-override-system-vi
 
 # Install Bash 4.
@@ -48,11 +47,6 @@ fi;
 #brew install kubectl
 #brew cask install minikube
 
-# You may wish to add the GOROOT-based install location to your PATH.
-# Probaly by exporting the variable into .path file that will be source by .bash_profile
-# export PATH=$PATH:/usr/local/opt/go/libexec/bin
-brew install go
-brew cask install gogland
 brew cask install java
 brew install leiningen
 brew install kotlin
@@ -60,13 +54,11 @@ brew install tree
 brew install maven
 brew cask install tunnelblick
 brew cask install intellij-idea-ce
-brew cask install visual-studio-code
 brew cask install google-chrome
 brew cask install docker
 brew cask install iterm2
 brew install mysql
-brew cask install mysqlworkbench
 brew cask install sequel-pro
-brew install ripgrep
+
 # Remove outdated versions from the cellar.
 brew cleanup
