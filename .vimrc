@@ -10,7 +10,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-startify'
-Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-markdown'
 
 call plug#end()
