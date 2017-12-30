@@ -21,7 +21,6 @@ brew install grep --with-default-names
 brew install gnu-indent --with-default-names
 brew install watch
 brew install wget
-brew install git
 brew install less
 brew install openssh
 brew install vim --with-override-system-vi
