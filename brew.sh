@@ -45,7 +45,6 @@ fi;
 
 brew tap caskroom/versions
 brew cask install java8
-brew cask install java
 brew install leiningen
 brew install kotlin
 brew install tree
