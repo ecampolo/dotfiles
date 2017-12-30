@@ -12,9 +12,6 @@ brew upgrade
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-
 # Install GNU tools without `g`-prefixed.
 brew install findutils --with-default-names
 brew install gnu-sed --with-default-names
@@ -47,13 +44,14 @@ fi;
 #brew install kubectl
 #brew cask install minikube
 
+brew tap caskroom/versions
+brew cask install java8
 brew cask install java
 brew install leiningen
 brew install kotlin
 brew install tree
 brew install maven
 brew cask install tunnelblick
-brew cask install intellij-idea-ce
 brew cask install google-chrome
 brew cask install docker
 brew cask install iterm2
