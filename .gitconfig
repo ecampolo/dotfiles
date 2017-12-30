@@ -6,7 +6,6 @@
 	s = status -s
 	st = status
 	co = checkout
-	cob = checkout -b
  	br = branch
   aa = add -A
 

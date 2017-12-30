@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bold="$(tput bold)"
+bold=$(tput bold)
 black=$(tput setaf 0);
 blue=$(tput setaf 67);
 cyan=$(tput setaf 81);
