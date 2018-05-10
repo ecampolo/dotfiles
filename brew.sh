@@ -43,12 +43,12 @@ fi;
 #brew install kubectl
 #brew cask install minikube
 
-brew tap caskroom/versions
-brew cask install java8
-brew install leiningen
-brew install kotlin
+#brew tap caskroom/versions
+#brew cask install java8
+#brew install leiningen
+#brew install kotlin
 brew install tree
-brew install maven
+#brew install maven
 brew cask install tunnelblick
 brew cask install google-chrome
 brew cask install docker
