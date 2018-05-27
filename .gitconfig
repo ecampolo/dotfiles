@@ -3,7 +3,7 @@
 	l = log --pretty=oneline --graph --abbrev-commit
 
 	# Basics
-	s = status
+	st = status
 	co = checkout
  	br = branch
   aa = add -A
