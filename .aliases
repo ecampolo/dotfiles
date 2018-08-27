@@ -34,3 +34,6 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Brew cleanup
+alias cleanup='brew update && brew upgrade && brew cleanup -s && brew cask cleanup && brew doctor && brew missing'
