@@ -16,11 +16,9 @@ BREW_PREFIX=$(brew --prefix)
 brew install coreutils
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
-brew install vim --with-override-system-vi
-
 # Install Bash 4.
 brew install bash
-brew install bash-completion2
+brew install bash-completion@2
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
@@ -28,9 +26,10 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
-brew cask install google-chrome
-brew cask install docker
-brew cask install iterm2
+brew install vim --with-override-system-vi
+brew install screen
+brew install tree
+
 
 # Remove outdated versions from the cellar.
 brew cleanup
