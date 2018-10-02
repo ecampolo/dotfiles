@@ -26,10 +26,9 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
-brew install vim --with-override-system-vi
 brew install screen
 brew install tree
-
+brew cask install iterm2
 
 # Remove outdated versions from the cellar.
 brew cleanup

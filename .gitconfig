@@ -1,78 +1,81 @@
 [alias]
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline --graph --abbrev-commit
+  # View abbreviated SHA, description, and history graph of the latest 20 commits
+  l = log --pretty=oneline --graph --abbrev-commit
 
-	# Basics
-	st = status
-	co = checkout
- 	br = branch
+  # Basics
+  st = status
+  co = checkout
+  br = branch
   aa = add -A
 
-	# Commits
-	ci = commit
-	cim = commit -m
-	cia = commit --amend
-	ciam = commit --amend -m
-	cianm = commit --amend --no-edit
+  # Commits
+  ci = commit
+  cim = commit -m
+  cia = commit --amend
+  ciam = commit --amend -m
+  cianm = commit --amend --no-edit
 
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+  # Interactive rebase with the given number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove branches that have already been merged with master
-	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  # Remove branches that have already been merged with master
+  # a.k.a. ‘delete merged’
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-	# Displays the branch current branch name
+  # Displays the branch current branch name
   branch-name = rev-parse --abbrev-ref HEAD
 
   publish = "!git push -u origin $(git branch-name)"
   unpublish = "!git push origin :$(git branch-name)"
-  
+
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
-  
+
   # Show the files that are currently assume-unchanged
   hidden = "!git ls-files -v | grep ^h | cut -c 3-"
 [apply]
   # Detect whitespace errors when applying a patch
   whitespace = fix
 [core]
-  # Use custom `.gitignore` and `.gitattributes`
+# Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
 
-  # Treat spaces before tabs and all kinds of trailing whitespace as an error
-  # [default] trailing-space: looks for spaces at the end of a line
-  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+# Treat spaces before tabs and all kinds of trailing whitespace as an error
+# [default] trailing-space: looks for spaces at the end of a line
+# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	
-	# Make `git rebase` safer on macOS
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-	
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
 
-	editor = vim
+# Make `git rebase` safer on macOS
+# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+  precomposeunicode = false
+
+# Speed up commands involving untracked files such as `git status`.
+# https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
+  editor = vim
 [color]
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  ui = auto
 [help]
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+  # Automatically correct and execute mistyped commands
+  autocorrect = 1
 [push]
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = simple
+  # Use the Git 1.x.x default to avoid errors on machines with old Git
+  # installations. To use `simple` instead, add this to your `~/.extra` file:
+  # `git config --global push.default simple`. See http://git.io/mMah-w.
+  default = simple
 [include]
   path = ~/.gitconfig.local
 
