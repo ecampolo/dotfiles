@@ -52,7 +52,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.java,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.kt :call CleanExtraSpaces()
+    autocmd BufWritePre * :call CleanExtraSpaces()
 endif
 
 " Mappings
@@ -68,4 +68,3 @@ nmap <leader>w :w!<cr>
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
-noremap <leader>ss :call CleanExtraSpaces()<CR>
