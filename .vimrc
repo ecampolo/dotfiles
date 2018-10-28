@@ -5,10 +5,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
-Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-markdown'
+Plug 'scrooloose/nerdtree'
+Plug 'fatih/vim-go'
+Plug 'crusoexia/vim-monokai'
 
 call plug#end()
 
@@ -37,8 +39,8 @@ set noswapfile
 
 " Color
 "
-colorscheme molokai
-let g:airline_theme='molokai'
+colorscheme monokai
+set termguicolors
 
 " Functions
 "

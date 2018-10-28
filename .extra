@@ -1,14 +1,9 @@
 #!/bin/bash
 
 bold=$(tput bold)
-black=$(tput setaf 0);
-blue=$(tput setaf 67);
-cyan=$(tput setaf 81);
 green=$(tput setaf 154);
 orange=$(tput setaf 208);
-purple=$(tput setaf 135);
 red=$(tput setaf 197);
-violet=$(tput setaf 141);
 white=$(tput setaf 231);
 yellow=$(tput setaf 222);
 
