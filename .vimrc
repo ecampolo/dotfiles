@@ -11,6 +11,7 @@ Plug 'tpope/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go'
 Plug 'crusoexia/vim-monokai'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -39,7 +40,9 @@ set noswapfile
 
 " Color
 "
-colorscheme monokai
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_selection=0
+colorscheme gruvbox
 set termguicolors
 
 " Functions

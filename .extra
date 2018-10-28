@@ -1,11 +1,11 @@
 #!/bin/bash
 
 bold=$(tput bold)
-green=$(tput setaf 154);
+green=$(tput setaf 142);
 orange=$(tput setaf 208);
-red=$(tput setaf 197);
+red=$(tput setaf 167);
 white=$(tput setaf 231);
-yellow=$(tput setaf 222);
+yellow=$(tput setaf 214);
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then
