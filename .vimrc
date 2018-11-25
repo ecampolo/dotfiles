@@ -10,8 +10,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go'
-Plug 'crusoexia/vim-monokai'
-Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 
@@ -40,9 +39,8 @@ set noswapfile
 
 " Color
 "
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_invert_selection=0
-colorscheme gruvbox
+let g:airline_theme = 'codedark'
+colorscheme codedark
 set termguicolors
 
 " Functions

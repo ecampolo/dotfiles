@@ -48,5 +48,3 @@ fi;
 
 # Vi mode
 set -o vi
-
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
