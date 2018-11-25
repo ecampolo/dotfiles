@@ -10,7 +10,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go'
-Plug 'tomasiser/vim-code-dark'
+Plug 'crusoexia/vim-monokai'
 
 call plug#end()
 
@@ -39,8 +39,8 @@ set noswapfile
 
 " Color
 "
-let g:airline_theme = 'codedark'
-colorscheme codedark
+let g:airline_theme = 'monokai'
+colorscheme monokai
 set termguicolors
 
 " Functions
