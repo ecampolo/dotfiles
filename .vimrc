@@ -1,8 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -10,7 +8,8 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'fatih/vim-go'
-Plug 'crusoexia/vim-monokai'
+Plug 'fxn/vim-monochrome'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -39,9 +38,11 @@ set noswapfile
 
 " Color
 "
-let g:airline_theme = 'monokai'
-colorscheme monokai
+colorscheme monochrome
 set termguicolors
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
 
 " Functions
 "
