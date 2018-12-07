@@ -1,0 +1,12 @@
+bold=$(tput bold)
+red=$(tput setaf 9);
+
+# Highlight the user name when logged in as root.
+if [[ "${USER}" == "root" ]]; then
+ PROMPT_USER_COLOR="${bold}${red}";
+fi;
+
+# Highlight the hostname when connected via SSH.
+if [[ "${SSH_TTY}" ]]; then
+  PROMPT_DEVICE_COLOR="${bold}${red}";
+fi;
