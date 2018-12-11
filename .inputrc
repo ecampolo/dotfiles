@@ -1,3 +1,7 @@
+# If there are multiple matches for completion,
+# make TAB cycle through them.
+TAB: menu-complete
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 

@@ -24,6 +24,12 @@ shopt -s histappend;
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
+# Save all lines of a multiple-line command in the same history entry.
+shopt -s cmdhist
+
+# Use extended pattern matching features.
+shopt -s extglob
+
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
