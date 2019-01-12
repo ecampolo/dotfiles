@@ -39,7 +39,9 @@ set noswapfile
 " Color
 "
 colorscheme monochrome
-set termguicolors
+if exists('+termguicolors')
+    set termguicolors
+endif
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
