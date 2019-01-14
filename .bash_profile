@@ -30,6 +30,9 @@ shopt -s cmdhist
 # Use extended pattern matching features.
 shopt -s extglob
 
+# Replaces directory names with the results of word expansion when performing filename completion
+shopt -s direxpand
+
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
