@@ -6,8 +6,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-markdown'
-Plug 'scrooloose/nerdtree'
-Plug 'fatih/vim-go'
 Plug 'fxn/vim-monochrome'
 Plug 'itchyny/lightline.vim'
 
@@ -45,21 +43,6 @@ endif
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
-
-" Functions
-"
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre * :call CleanExtraSpaces()
-endif
 
 " Mappings
 "
