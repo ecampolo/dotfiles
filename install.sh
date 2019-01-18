@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Check for Homebrew Installation
+if ! which brew > /dev/null; then
+     # Install Homebrew
+     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi;
+
 # Make sure we’re using the latest Homebrew.
 brew update
 

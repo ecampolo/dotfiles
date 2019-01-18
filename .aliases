@@ -7,6 +7,8 @@ else # macOS `ls`
 	colorflag="-G"
 fi
 
+alias g="git"
+
 # List all files colorized in long format
 alias l="ls -lhF ${colorflag}"
 
