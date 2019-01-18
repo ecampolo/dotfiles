@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# Check for Homebrew Installation
-if ! which brew > /dev/null; then
-     # Install Homebrew
-     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi;
+# Install Command Line Tools
+xcode-select --install
+
+# Agree to the XCode license
+sudo xcodebuild -license
+
+# Install brew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -28,7 +31,6 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
-brew install screen
 brew install tree
 brew cask install iterm2
 brew install vim --with-override-system-vi
@@ -40,8 +42,6 @@ printf "Downloading sexy bash prompt\n"
 curl -sO https://raw.githubusercontent.com/twolfson/sexy-bash-prompt/master/.bash_prompt
 
 printf "Installing Vimplug\n"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugUpgrade +PlugUpdate +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 printf "Finished\n"

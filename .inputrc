@@ -2,6 +2,9 @@
 # make TAB cycle through them.
 TAB: menu-complete
 
+# Allow deleting to previous slash using Ctrl+b
+C-b:unix-filename-rubout
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
