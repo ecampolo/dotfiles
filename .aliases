@@ -7,10 +7,17 @@ else # macOS `ls`
 	colorflag="-G"
 fi
 
+# Shorcuts
 alias g="git"
+
+# Add ssh-key to ssh-agent when key exist
+if [ "$SSH_AUTH_SOCK" != "" ] && [ -f ~/.ssh/id_rsa ] && [ -x /usr/bin/ssh-add  ]; then
+  ssh-add -l >/dev/null || alias ssh='(ssh-add -l >/dev/null || ssh-add) && unalias ssh; ssh'
+fi
 
 # List all files colorized in long format
 alias l="ls -lhF ${colorflag}"
+alias ll="l"
 
 # List all files colorized in long format, including dot files
 alias la="ls -lAhF ${colorflag}"
@@ -37,5 +44,5 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-# Brew cleanup
-alias cleanup='brew update && brew upgrade && brew cleanup -s && brew doctor && brew missing'
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
