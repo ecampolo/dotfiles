@@ -78,4 +78,7 @@
   default = simple
 [include]
   path = ~/.gitconfig.local
+[user]
+  name = Emanuel Campolo
+  email = emanuel.campolo@mercadolibre.com
 
