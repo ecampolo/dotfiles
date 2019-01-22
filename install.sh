@@ -27,14 +27,20 @@ fi;
 brew install vim
 brew install git
 brew install go
+brew install dep
 brew install tree
+brew cask install caffeine
+brew cask install iterm2
+brew cask install spotify
+
+brew upgrade
 
 # Remove outdated versions from the cellar.
 brew cleanup
 
 # Install sdkman
 curl -s "https://get.sdkman.io" | bash
-source "/Users/ecampolo/.sdkman/bin/sdkman-init.sh"
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 printf "Downloading sexy bash prompt\n"
 curl -s -o ~/.bash_prompt https://raw.githubusercontent.com/twolfson/sexy-bash-prompt/master/.bash_prompt
