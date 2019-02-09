@@ -5,15 +5,36 @@
   # Basics
   st = status
   co = checkout
+  cob = checkout -b
+  # Switch to a branch, creating it if necessary
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
   br = branch
   aa = add -A
 
   # Commits
-  ci = commit
-  cim = commit -m
-  cia = commit --amend
-  ciam = commit --amend -m
-  cianm = commit --amend --no-edit
+  c = commit
+  cm = commit -m
+  ca = commit --amend
+  cam = commit --amend -m
+  canm = commit --amend --no-edit
+  wip = commit -am "WIP"
+
+  # Add and commit
+  ac = !"git aa && git c"
+  acm = !"git aa && git cm"
+  aca = !"git aa && git ca"
+  acam = !"git aa && git cam"
+  acanm = !"git aa && git canm"
+
+  # Edit
+  rh = reset HEAD --hard
+  rh1s = reset --soft HEAD~1
+  rh1m = reset --mixed HEAD~1
+  rh1h = reset --hard HEAD~1
+  restore = "!git reset --hard origin/$(git branch-name)"
+
+  # Deletes all branches but master and develop
+  mad = !"git branch | egrep -v '(master|develop)' | xargs git br -D"
 
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -24,16 +45,13 @@
   # Interactive rebase with the given number of latest commits
   reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-  # Remove branches that have already been merged with master
-  # a.k.a. ‘delete merged’
-  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
   # Displays the branch current branch name
   branch-name = rev-parse --abbrev-ref HEAD
 
+  # Push and track the current branch to origin repository# 
   publish = "!git push -u origin $(git branch-name)"
-  unpublish = "!git push origin :$(git branch-name)"
 
+  # Hide and unhide a given file from git
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
 
