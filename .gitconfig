@@ -7,7 +7,7 @@
   co = checkout
   cob = checkout -b
   # Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
   br = branch
   aa = add -A
 
@@ -27,10 +27,10 @@
   acanm = !"git aa && git canm"
 
   # Edit
-  rh = reset HEAD --hard
-  rh1s = reset --soft HEAD~1
-  rh1m = reset --mixed HEAD~1
-  rh1h = reset --hard HEAD~1
+  undo = checkout --
+  rhs = !"r() { [ $# -eq 0 ] && git reset --soft HEAD || git reset --soft HEAD~$1; }; r"
+  rhm = !"r() { [ $# -eq 0 ] && git reset --mixed HEAD || git reset --mixed HEAD~$1; }; r"
+  rhh = !"r() { [ $# -eq 0 ] && git reset --hard HEAD || git reset --hard HEAD~$1; }; r"
   restore = "!git reset --hard origin/$(git branch-name)"
 
   # Deletes all branches but master and develop
