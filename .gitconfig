@@ -3,13 +3,13 @@
   l = log --pretty=oneline --graph --abbrev-commit
 
   # Basics
-  st = status
+  s = status
   co = checkout
   cob = checkout -b
-  # Switch to a branch, creating it if necessary
-  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
   br = branch
   aa = add -A
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
   # Commits
   c = commit
@@ -25,6 +25,10 @@
   aca = !"git aa && git ca"
   acam = !"git aa && git cam"
   acanm = !"git aa && git canm"
+
+  # Rebase
+  rd = !git rebase -i $(git merge-base develop HEAD)
+  rm = !git rebase -i $(git merge-base master HEAD)
 
   # Edit
   undo = checkout --
