@@ -1,6 +1,7 @@
 [alias]
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline --graph --abbrev-commit
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
   # Basics
   s = status
@@ -38,7 +39,7 @@
   restore = "!git reset --hard origin/$(git branch-name)"
 
   # Deletes all branches but master and develop
-  mad = !"git branch | egrep -v '(master|develop)' | xargs git br -D"
+  mad = !"git branch | egrep -v '(master|develop)' | xargs -n 1 git br -D"
 
   # Show the diff between the latest commit and the current state
   d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
