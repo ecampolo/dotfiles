@@ -4,7 +4,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
   # Basics
-  s = status
+  st = status
   co = checkout
   cob = checkout -b
   br = branch
@@ -93,7 +93,7 @@
   ui = auto
 [help]
   # Automatically correct and execute mistyped commands
-  autocorrect = 1
+  autocorrect = 0
 [push]
   # Use the Git 1.x.x default to avoid errors on machines with old Git
   # installations. To use `simple` instead, add this to your `~/.extra` file:
