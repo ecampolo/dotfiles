@@ -1,7 +1,3 @@
-# If there are multiple matches for completion,
-# make TAB cycle through them.
-TAB: menu-complete
-
 # Allow deleting to previous slash using Ctrl+b
 C-b:unix-filename-rubout
 

@@ -43,3 +43,6 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
+
+# Print unique lines
+alias unik='f(){ awk "!seen[\$0]++" "$1";  unset -f f; }; f'
