@@ -15,6 +15,13 @@ for file in ~/.{path,exports,aliases,functions,extra,bash_prompt}; do
 done;
 unset file;
 
+# Speed up runtime by caching this value
+if command -v brew &> /dev/null; then
+	BREW_PREFIX=$(brew --prefix)
+else
+	BREW_PREFIX=""
+fi
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
@@ -41,14 +48,17 @@ for option in autocd globstar; do
 done;
 
 # Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-	source "$(brew --prefix)/share/bash-completion/bash_completion";
+if command -v brew &> /dev/null && [ -r "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]; then
+	# Ensure existing Homebrew v1 completions continue to work
+	export BASH_COMPLETION_COMPAT_DIR="${BREW_PREFIX}/etc/bash_completion.d"
+
+	source "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
 elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;
 
 # Enable git completion
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && . /usr/local/etc/bash_completion.d/git-completion.bash
+[ -f "${BREW_PREFIX}/etc/bash_completion.d/git-completion.bash" ] && . ${BREW_PREFIX}/etc/bash_completion.d/git-completion.bash
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;

@@ -34,3 +34,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 export PATH=$PATH:${GOPATH}/bin
 
+# Oracle
+export CGO_CFLAGS=-I/Users/ecampolo/oracle/instantclient_18_1/sdk/include
+export CGO_LDFLAGS=-L/Users/ecampolo/oracle/instantclient_18_1
+export DYLD_LIBRARY_PATH=/Users/ecampolo/oracle/instantclient_18_1:$DYLD_LIBRARY_PATH
