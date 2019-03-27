@@ -16,6 +16,12 @@ call plug#end()
 "
 set history=1000
 
+" Encoding
+"
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
 " Use Unix as the standard file type
 "
 set ffs=unix,dos,mac
