@@ -10,11 +10,10 @@ brew update
 BREW_PREFIX=$(brew --prefix)
 
 # Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
-# Install Bash 4.
+# Install Bash 5.
 brew install bash
 brew install bash-completion@2
 
@@ -23,6 +22,9 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
+
+# Set up GNU core utilities (those that come with OS X are outdated).
+echo 'Be sure to add `$(brew prefix coreutils|findutils|gnu-sed)/libexec/gnubin` to `$PATH`.'
 
 brew install vim
 brew install git
