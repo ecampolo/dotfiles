@@ -1,27 +1,11 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
-# Set 256 color profile where possible
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-	export TERM='gnome-256color';
-elif infocmp xterm-256color >/dev/null 2>&1; then
-	export TERM='xterm-256color';
-fi;
-
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,exports,aliases,functions,extra,bash_prompt}; do
+# Load the shell dotfiles:
+for file in ~/.{path,exports,functions,extra,bash_prompt}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-# Speed up runtime by caching this value
-if command -v brew &> /dev/null; then
-	BREW_PREFIX=$(brew --prefix)
-else
-	BREW_PREFIX=""
-fi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -41,28 +25,19 @@ shopt -s extglob
 # Replaces directory names with the results of word expansion when performing filename completion
 shopt -s direxpand
 
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-        shopt -s "$option" 2> /dev/null;
-done;
+# A command name that is the name of a directory is executed as if it were the argument to the cd command.
+shopt -s autocd
 
-# Add tab completion for many Bash commands
-if command -v brew &> /dev/null && [ -r "${BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]; then
-	# Ensure existing Homebrew v1 completions continue to work
-	export BASH_COMPLETION_COMPAT_DIR="${BREW_PREFIX}/etc/bash_completion.d"
+# The pattern ** used in a pathname expansion context will match all files and zero or more directories and subdirectories. If the pattern is followed by a /, only directories and subdirectories match.
+shopt -s globstar
 
-	source "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
-elif [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion;
-fi;
+# Load enabled aliases, completion, plugins
+BASH_IT="$HOME/bash-it"
 
-# Enable git completion
-[ -f "${BREW_PREFIX}/etc/bash_completion.d/git-completion.bash" ] && . ${BREW_PREFIX}/etc/bash_completion.d/git-completion.bash
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+for file in "aliases" "plugins" "completion"
+do
+  source "$BASH_IT/reloader.bash" "$file"
+done
 
 # Vi mode
 set -o vi

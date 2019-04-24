@@ -1,7 +1,0 @@
-bold=$(tput bold)
-orange=$(tput setaf 208);
-
-# Highlight the hostname when connected via SSH.
-if [[ "${SSH_TTY}" ]]; then
-  PROMPT_DEVICE_COLOR="${bold}${orange}";
-fi;

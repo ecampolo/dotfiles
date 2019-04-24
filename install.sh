@@ -29,7 +29,6 @@ echo 'Be sure to add `$(brew prefix coreutils|findutils|gnu-sed)/libexec/gnubin`
 brew install vim
 brew install git
 brew install go
-brew install dep
 brew install tree
 brew cask install caffeine
 brew cask install iterm2
@@ -40,7 +39,7 @@ brew upgrade
 # Remove outdated versions from the cellar.
 brew cleanup
 
-# Install sdkman
+printf "Installing sdkman\n"
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
