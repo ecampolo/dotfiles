@@ -3,9 +3,6 @@ set -e
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-echo "Pulling last version from github"
-git pull origin master;
-
 function doIt() {
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
@@ -19,5 +16,8 @@ function doIt() {
 	source ~/.bash_profile;
 }
 
+printf "%s\n" "running bash-it-sync job"
+./bash-it-sync-bin
+printf "%s\n" "executing rsync"
 doIt;
 unset doIt;

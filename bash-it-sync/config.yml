@@ -1,6 +1,13 @@
 plugins:
-
+    - alias-completion.plugin.bash
+    - docker.plugin.bash
 completions:
-  - awless.completion.bash
+    - export.completion.bash
+    - ssh.completion.bash
+    - brew.completion.bash
+    - git.completion.bash
+    - system.completion.bash
 aliases:
-  - bolt.aliases.bash
+    - curl.aliases.bash
+    - docker.aliases.bash 
+    - general.aliases.bash
