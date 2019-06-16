@@ -1,5 +1,4 @@
 plugins:
-    - alias-completion.plugin.bash
     - docker.plugin.bash
 completions:
     - export.completion.bash

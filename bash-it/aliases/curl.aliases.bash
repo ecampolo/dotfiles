@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cite 'about-alias'
+about-alias 'Curl aliases for convenience.'
+
 # set apt aliases
 function _set_pkg_aliases()
 {

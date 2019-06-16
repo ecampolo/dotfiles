@@ -34,9 +34,9 @@ shopt -s globstar
 # Load enabled aliases, completion, plugins
 BASH_IT="$HOME/bash-it"
 
-for file in "aliases" "plugins" "completion"
+for file in "aliases" "completion" "plugins"
 do
-  source "$BASH_IT/reloader.bash" "$file"
+  source ".reloader.bash" "$file"
 done
 
 # Vi mode
