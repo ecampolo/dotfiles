@@ -1,0 +1,6 @@
+plugins:
+
+completions:
+  - awless.completion.bash
+aliases:
+  - bolt.aliases.bash

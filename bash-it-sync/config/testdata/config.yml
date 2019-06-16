@@ -1,0 +1,14 @@
+plugins:
+  - plugin1
+  - plugin2
+  - plugin3
+
+completions:
+  - completion1
+  - completion2
+  - completion3
+
+aliases:
+  - alias1
+  - alias2
+  - alias3
