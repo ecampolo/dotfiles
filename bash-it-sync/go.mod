@@ -1,4 +1,4 @@
-module github.com/ecampolo/gotfiles
+module github.com/ecampolo/bash-it-sync
 
 go 1.12
 

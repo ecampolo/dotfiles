@@ -1,14 +1,15 @@
 package main
 
 import (
-	"github.com/ecampolo/gotfiles/config"
-	"github.com/hashicorp/go-getter"
 	"io"
 	"io/ioutil"
 	"log"
 	"os"
 	"path"
 	"path/filepath"
+
+	"github.com/ecampolo/bash-it-sync/config"
+	"github.com/hashicorp/go-getter"
 )
 
 const BashIt = "bash-it"
