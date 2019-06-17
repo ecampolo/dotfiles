@@ -36,7 +36,7 @@ BASH_IT="$HOME/bash-it"
 
 for file in "aliases" "completion" "plugins"
 do
-  source ".reloader.bash" "$file"
+  source "$HOME/.reloader.bash" "$file"
 done
 
 # Vi mode
