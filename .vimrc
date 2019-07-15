@@ -12,45 +12,50 @@ Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
+" Use Vim settings
+set nocompatible
+
+" Show incomplete commands at the bottom.
+set showcmd
+
+" Show current mode at the bottom.
+set showmode
+
+" Show line numbers on the sidebar
+set number
+
 " Sets how many lines of history VIM has to remember
-"
 set history=1000
 
 " Encoding
-"
 set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
 
 " Use Unix as the standard file type
-"
 set ffs=unix,dos,mac
 
 " Indentation
-"
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set smartindent
 set ttyfast
 set lazyredraw
+set linebreak
+
 
 " A buffer becomes hidden when it is abandoned
 set hidden
 
 " Search
-"
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
 " Backup
-"
 set nobackup
 set nowb
 set noswapfile
 
 " Color
-"
 colorscheme monochrome
 if exists('+termguicolors')
     set termguicolors
@@ -68,15 +73,15 @@ endif
 " like <leader>w saves the current file
 let mapleader = ","
 
-"" Split
+" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
-"" Buffer nav
+" Buffer nav
 noremap <leader>z :bp<CR>
 noremap <leader>x :bn<CR>
 
-"" Close buffer
+" Close buffer
 noremap <leader>c :bd<CR>
 
 " Fast saving
@@ -88,7 +93,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-"" Tabs
+" Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
@@ -98,10 +103,10 @@ let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-"" Opens an edit command with the path of the currently edited file filled in
+" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-"" Opens a tab edit command with the path of the currently edited file filled
+" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " :W sudo saves the file
