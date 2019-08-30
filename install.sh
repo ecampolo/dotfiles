@@ -29,7 +29,6 @@ brew install vim
 brew install git
 brew install go
 brew install tree
-brew cask install caffeine
 brew cask install iterm2
 brew cask install spotify
 
