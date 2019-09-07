@@ -17,8 +17,5 @@ function doIt() {
 	source ~/.bash_profile;
 }
 
-printf "%s\n" "running bash-it-sync job"
-./bash-it-sync-bin
-printf "%s\n" "executing rsync"
 doIt;
 unset doIt;

@@ -1,3 +1,6 @@
+# If there are multiple matches for completion, Tab should cycle through them
+TAB:menu-complete
+
 # Allow deleting to previous slash using Ctrl+b
 C-b:unix-filename-rubout
 
@@ -26,6 +29,9 @@ set completion-query-items 200
 
 # Show extra file information when completing, like `ls -F` does
 set visible-stats on
+
+# No bell sound
+set bell-style none
 
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and
