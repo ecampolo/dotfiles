@@ -39,5 +39,9 @@ do
   source "$HOME/.reloader.bash" "$file"
 done
 
+# brew install jump
+# https://github.com/gsamokovarov/jump
+eval "$(jump shell)"
+
 # Vi mode
 set -o vi

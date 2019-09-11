@@ -3,9 +3,6 @@
 # Install brew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Make sure we’re using the latest Homebrew.
-brew update
-
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
@@ -17,7 +14,7 @@ brew install bash
 brew install bash-completion@2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+if ! grep -Fq "${BREW_PREFIX}/bin/bash" /etc/shells; then
   echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
@@ -29,13 +26,9 @@ brew install vim
 brew install git
 brew install go
 brew install tree
+brew install jump
 brew cask install iterm2
 brew cask install spotify
-
-brew upgrade
-
-# Remove outdated versions from the cellar.
-brew cleanup
 
 printf "Installing sdkman\n"
 curl -s "https://get.sdkman.io" | bash
