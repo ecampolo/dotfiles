@@ -1,18 +1,13 @@
 #!/bin/bash
-
 pushd "${BASH_IT}" >/dev/null || exit 1
 
-if [ ! -z "${1}" ] && [[ "${1}" =~ ^(aliases|completion|plugins)$ ]]; then
-  for _bash_it_config_file in $(sort <(compgen -G "./${1}/*.bash")); do
-    if [ -e "$_bash_it_config_file" ]; then
-      # shellcheck source=/dev/null
-      source "$_bash_it_config_file"
+for _bash_it_file in $(sort <(compgen -G "./${1}/*.bash")); do
+    if [ -e "$_bash_it_file" ]; then
+        source "$_bash_it_file"
     else
-      echo "Unable to locate ${_bash_it_config_file}" > /dev/stderr
+        echo "unable to locate ${_bash_it_file}" > /dev/stderr
     fi
-  done
-fi
+done
 
-unset _bash_it_config_file
-unset _bash_it_config_type
+unset _bash_it_file
 popd >/dev/null || exit 1
