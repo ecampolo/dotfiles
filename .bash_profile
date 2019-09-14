@@ -31,6 +31,13 @@ shopt -s autocd
 # The pattern ** used in a pathname expansion context will match all files and zero or more directories and subdirectories. If the pattern is followed by a /, only directories and subdirectories match.
 shopt -s globstar
 
+# No empty completion
+shopt -s no_empty_cmd_completion
+
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # Load enabled aliases, completion, plugins
 BASH_IT="$HOME/bash-it"
 
