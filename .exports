@@ -9,7 +9,7 @@ export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='erasedups:ignoreboth';
 # Don't record some commands
-export HISTIGNORE="exit:ls:ll:la:bg:fg:history:clear:cd*:pwd:git*:gs:gl"
+export HISTIGNORE="exit:ls:ll:la:bg:fg:history:clear:cd*:pwd:git st:git co:gs:gl"
 # Print the timestamp of each command
 export HISTTIMEFORMAT='%F %T '
 # Save and reload the history after each command finishes
@@ -37,9 +37,9 @@ export SDKMAN_DIR="$HOME/.sdkman";
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 # GO
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
+export GOPATH=$HOME/go/go1.12.9
 export PATH=$PATH:${GOPATH}/bin
+export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 
 # Oracle
 export CGO_CFLAGS=-I/Users/ecampolo/oracle/instantclient_18_1/sdk/include

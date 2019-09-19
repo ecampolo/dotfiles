@@ -1,5 +1,8 @@
-# If there are multiple matches for completion, Tab should cycle through them
+# Make Tab cycle between possible completions
+# Cycle forward: Tab
+# Cycle backward: Shift-Tab
 TAB:menu-complete
+"\e[Z": menu-complete-backward
 
 # Allow deleting to previous slash using Ctrl+b
 C-b:unix-filename-rubout
