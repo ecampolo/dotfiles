@@ -4,14 +4,17 @@
 TAB:menu-complete
 "\e[Z": menu-complete-backward
 
-# Allow deleting to previous slash using Ctrl+b
-C-b:unix-filename-rubout
+# List the candidates on the first tab without auto-completion
+set menu-complete-display-prefix on
+
+# List all matches in case multiple possible completions are possible
+set show-all-if-ambiguous on
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
-# List all matches in case multiple possible completions are possible
-set show-all-if-ambiguous on
+# Allow deleting to previous slash using Ctrl+b
+C-b:unix-filename-rubout
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
