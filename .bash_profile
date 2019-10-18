@@ -1,11 +1,68 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+# Bash prompt
+source ~/.bash_prompt
 
-# Load the shell dotfiles:
-for file in ~/.{exports,functions,bash_prompt}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# Make vim the default editor.
+export EDITOR='vim';
+
+# Increase Bash history size.
+export HISTSIZE='100000';
+export HISTFILESIZE="${HISTSIZE}";
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL='erasedups:ignoreboth';
+# Don't record some commands
+export HISTIGNORE="exit:ls:ll:la:bg:fg:history:clear:cd*:pwd:git st:git co:gs:gl"
+# Print the timestamp of each command
+export HISTTIMEFORMAT='%F %T '
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Prefer US English and use UTF-8.
+export LANG='en_US.UTF-8';
+export LC_ALL='en_US.UTF-8';
+
+# Highlight section titles in manual pages.
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X';
+
+# Set 256 color profile where possible
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+    export TERM='gnome-256color';
+elif infocmp xterm-256color >/dev/null 2>&1; then
+    export TERM='xterm-256color';
+fi;
+
+# SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman";
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+# GO
+export GOPATH=$HOME/go
+export PATH=$PATH:${GOPATH}/bin
+export PATH=$PATH:${GOPATH}/go1.12.9/bin
+export PATH=$PATH:${GOPATH}/go1.13.3/bin
+
+if [ $(uname) = "Darwin" ]; then
+    export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
+    
+    # Setting PATH for Python 3.8
+    export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
+    export PATH=$PATH:/Users/ecampolo/Library/Python/3.8/bin
+
+    # Oracle
+    export CGO_CFLAGS=-I/Users/ecampolo/oracle/instantclient_18_1/sdk/include
+    export CGO_LDFLAGS=-L/Users/ecampolo/oracle/instantclient_18_1
+    export DYLD_LIBRARY_PATH=/Users/ecampolo/oracle/instantclient_18_1:$DYLD_LIBRARY_PATH
+fi
+
+# Bash-it !
+BASH_IT="$HOME/bash-it"
+for file in "aliases" "completion" "plugins"
+do
+    source "$HOME/.reloader.bash" "$file"
+done
+unset BASH_IT
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -28,7 +85,8 @@ shopt -s direxpand
 # A command name that is the name of a directory is executed as if it were the argument to the cd command.
 shopt -s autocd
 
-# The pattern ** used in a pathname expansion context will match all files and zero or more directories and subdirectories. If the pattern is followed by a /, only directories and subdirectories match.
+# The pattern ** used in a pathname expansion context will match all files and zero or more directories and subdirectories.
+# If the pattern is followed by a /, only directories and subdirectories match.
 shopt -s globstar
 
 # No empty completion
@@ -38,17 +96,6 @@ shopt -s no_empty_cmd_completion
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Load enabled aliases, completion, plugins
-BASH_IT="$HOME/bash-it"
-
-for file in "aliases" "completion" "plugins"
-do
-  source "$HOME/.reloader.bash" "$file"
-done
-
 # brew install jump
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
-
-# Vi mode
-set -o vi

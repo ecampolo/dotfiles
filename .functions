@@ -1,4 +1,0 @@
-# Dummy functions called from bash-it files
-cite (){ :; }
-about-alias (){ :; }
-about-plugin (){ :; }

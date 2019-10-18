@@ -6,11 +6,12 @@ function doIt() {
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "sync.sh" \
-		--exclude "install.sh" \
+        --exclude "mac-installation" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
         --exclude "bash-it-sync/" \
         --exclude "bash-it-sync-bin" \
+        --exclude "config.yml" \
 		-avh --no-perms . ~;
 }
 
