@@ -52,8 +52,13 @@ export PATH=$PATH:${GOPATH}/go1.12.9/bin
 export PATH=$PATH:${GOPATH}/go1.13.3/bin
 
 if [ $(uname) = "Darwin" ]; then
-    export PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
-    
+	# Get list of gnubin directories
+	export GNUBINS="$(find /usr/local/opt -type d -follow -name gnubin -print)"
+
+	for bindir in ${GNUBINS[@]}; do
+		export PATH=$bindir:$PATH
+	done;
+
     # Setting PATH for Python 3.8
     export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
     export PATH=$PATH:/Users/ecampolo/Library/Python/3.8/bin
@@ -66,10 +71,9 @@ fi
 
 # Bash-it !
 BASH_IT="$HOME/bash-it"
-for file in "aliases" "completion" "plugins"
-do
-    source "$HOME/.reloader.bash" "$file"
-done
+source $HOME/.reloader.bash aliases
+source $HOME/.reloader.bash completion
+source $HOME/.reloader.bash plugins
 unset BASH_IT
 
 # Case-insensitive globbing (used in pathname expansion)
