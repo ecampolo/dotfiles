@@ -1,108 +1,100 @@
 [alias]
-  # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline --graph --abbrev-commit
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --graph --decorate --pretty=oneline --abbrev-commit
 
-  # Basics
-  st = status
-  co = checkout
-  cob = checkout -b
-  br = branch
-  aa = add -A
-  # Switch to a branch, creating it if necessary
-  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+    # Basics
+	st = status
+	co = checkout
+	br = branch
+	aa = add -A
 
-  # Commits
-  c = commit
-  cm = commit -m
-  ca = commit --amend
-  cam = commit --amend -m
-  canm = commit --amend --no-edit
-  wip = commit -am "WIP"
+    # Commits
+	c = commit
+	cm = commit -m
+	ca = commit --amend
+	cam = commit --amend -m
+	canm = commit --amend --no-edit
+	wip = commit -am "WIP"
 
-  # Add and commit
-  ac = !"git aa && git c"
-  acm = !"git aa && git cm"
-  aca = !"git aa && git ca"
-  acam = !"git aa && git cam"
-  acanm = !"git aa && git canm"
+    # Add and commit
+	ac = !"git aa && git c"
+	acm = !"git aa && git cm"
+	aca = !"git aa && git ca"
+	acam = !"git aa && git cam"
+	acanm = !"git aa && git canm"
 
-  # Rebase
-  rd = !git rebase -i $(git merge-base develop HEAD)
-  rm = !git rebase -i $(git merge-base master HEAD)
+    # Edit
+	undo = checkout --
+	restore = "!git reset --hard origin/$(git branch-name)"
 
-  # Edit
-  undo = checkout --
-  rhs = !"r() { [ $# -eq 0 ] && git reset --soft HEAD || git reset --soft HEAD~$1; }; r"
-  rhm = !"r() { [ $# -eq 0 ] && git reset --mixed HEAD || git reset --mixed HEAD~$1; }; r"
-  rhh = !"r() { [ $# -eq 0 ] && git reset --hard HEAD || git reset --hard HEAD~$1; }; r"
-  restore = "!git reset --hard origin/$(git branch-name)"
+    # Deletes all branches but master and develop
+	mad = !"git branch | egrep -v '(master|develop)' | xargs -n 1 git br -D"
 
-  # Deletes all branches but master and develop
-  mad = !"git branch | egrep -v '(master|develop)' | xargs -n 1 git br -D"
+    # Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-  # Show the diff between the latest commit and the current state
-  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
-  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+    # Push and track the current branch to origin repository# 
+	publish = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
 
-  # Interactive rebase with the given number of latest commits
-  reb = "!r() { git rebase -i HEAD~$1; }; r"
+    # Hide and unhide a given file from git
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
 
-  # Displays the branch current branch name
-  branch-name = rev-parse --abbrev-ref HEAD
-
-  # Push and track the current branch to origin repository# 
-  publish = "!git push -u origin $(git branch-name)"
-
-  # Hide and unhide a given file from git
-  hide = update-index --assume-unchanged
-  unhide = update-index --no-assume-unchanged
-
-  # Show the files that are currently assume-unchanged
-  hidden = "!git ls-files -v | grep ^h | cut -c 3-"
+    # Show the files that are currently assume-unchanged
+	hidden = "!git ls-files -v | grep ^h | cut -c 3-"
 [apply]
-  # Detect whitespace errors when applying a patch
-  whitespace = fix
+    # Detect whitespace errors when applying a patch
+	whitespace = fix
 [core]
-# Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
+	# Use custom `.gitignore` and `.gitattributes`
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 
-# Treat spaces before tabs and all kinds of trailing whitespace as an error
-# [default] trailing-space: looks for spaces at the end of a line
-# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	# Treat all kinds of trailing whitespace as an error.
+	whitespace = trailing-space
 
-# Make `git rebase` safer on macOS
-# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-  trustctime = false
+	# Make `git rebase` safer on macOS
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
 
-# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-  precomposeunicode = false
+	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
 
-# Speed up commands involving untracked files such as `git status`.
-# https://git-scm.com/docs/git-update-index#_untracked_cache
-  untrackedCache = true
-  editor = vim
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
+	editor = vim
 [color]
-  # Use colors in Git commands that are capable of colored output when
-  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-  ui = auto
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	ui = auto
 [help]
-  # Automatically correct and execute mistyped commands
-  autocorrect = 0
+    # Automatically correct and execute mistyped commands
+	autocorrect = 0
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
 [push]
-  # Use the Git 1.x.x default to avoid errors on machines with old Git
-  # installations. To use `simple` instead, add this to your `~/.extra` file:
-  # `git config --global push.default simple`. See http://git.io/mMah-w.
-  default = simple
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
 [include]
-  path = ~/.gitconfig.local
-[user]
-  name = Emanuel Campolo
-  email = emanuel.campolo@mercadolibre.com
+	path = ~/.gitconfig.local
+
+# URL shorthands
 [url "git@github.com:"]
-  insteadOf = https://github.com/
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+	insteadOf = "github:"
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
