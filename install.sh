@@ -21,7 +21,6 @@ fi;
 
 brew install vim
 brew install git
-brew install go
 brew install jump
 brew install wget
 brew install jq

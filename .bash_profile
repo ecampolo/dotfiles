@@ -48,8 +48,7 @@ export SDKMAN_DIR="$HOME/.sdkman";
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:${GOPATH}/bin
-export PATH=$PATH:${GOPATH}/go1.12.9/bin
-export PATH=$PATH:${GOPATH}/go1.13.3/bin
+export PATH=$PATH:/usr/local/go/bin
 
 if [ $(uname) = "Darwin" ]; then
 	# Get list of gnubin directories
