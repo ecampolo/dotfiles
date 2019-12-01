@@ -1,5 +1,4 @@
 plugins:
-    - docker.plugin.bash
 completions:
     - export.completion.bash
     - ssh.completion.bash
@@ -7,7 +6,3 @@ completions:
     - git.completion.bash
     - system.completion.bash
 aliases:
-    - curl.aliases.bash
-    - docker.aliases.bash
-    - general.aliases.bash
-    - git.aliases.bash
