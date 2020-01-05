@@ -52,6 +52,14 @@ alias greplace='gacanm && gpf'
 alias gl='git pull'
 alias glr='git pull --rebase'
 
+alias gr='git rebase'
+alias gra='git rebase --abort'
+alias grc='git rebase --continue'
+
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+
 alias gf='git fetch --all'
 alias gfp='gf --prune'
 
@@ -116,7 +124,7 @@ export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='erasedups:ignoreboth';
 # Don't record some commands
-export HISTIGNORE="exit:ls:ll:la:bg:fg:history:clear:cd*:pwd:g*"
+export HISTIGNORE="exit:ls:ll:la:bg:fg:history:clear:cd*:pwd"
 # Print the timestamp of each command
 export HISTTIMEFORMAT='%F %T '
 # Save and reload the history after each command finishes
