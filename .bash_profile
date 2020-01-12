@@ -67,9 +67,9 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcot='git checkout --track'
 
-alias grestore='git reset --hard && git clean -df'
+alias grestore='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD) && git clean -df'
 alias gclean='git clean -df'
-alias gmad='gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D'
+alias gmad='grestore && gco master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -79,20 +79,13 @@ alias ls="ls --color=auto"
 
 # List dir contents aliases
 # ref: http://ss64.com/osx/ls.html
-# Long form, mark file types, file size, color
 alias l="ls -lFh"
 alias ll="l"
 
-# Long form, mark file types, order by last modified, color
 alias lt="ls -lFht"
-
-# Long form, list all except . and ..., mark file types, file size, color
+alias ltr="ls -lFhtr"
 alias la="ls -laFh"
-
-# Long form, list all except . and ..., mark file types, order by last modified, file size, color
 alias lat="ls -laFht"
-
-# List only directories, mark file types
 alias lsd="ls -lhF | grep --color=never '^d'"
 
 # Always enable colored `grep` output
@@ -144,10 +137,10 @@ export MANPAGER='less -X';
 export SDKMAN_DIR="$HOME/.sdkman";
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
-# GO
+# Path
 GOPATH="$HOME/go"
-PATH="$PATH:${GOPATH}/bin"
-PATH="$PATH:/usr/local/go/bin"
+GOBIN="$GOPATH/bin"
+PATH="$GOBIN:/usr/local/go/bin:$PATH"
 
 if [ $(uname) = "Darwin" ]; then
 	# Get list of gnubin directories
@@ -159,7 +152,31 @@ if [ $(uname) = "Darwin" ]; then
 fi
 
 export GOPATH
+export GOBIN
 export PATH
+
+### Functions
+function switchgo() {
+  version=$1
+  if [ -z $version ]; then
+    echo "Usage: switchgo [version]"
+    return
+  fi
+
+  if ! command -v "go$version" > /dev/null 2>&1; then
+    echo "version does not exist, downloading with commands: "
+    echo "  go get golang.org/dl/go${version}"
+    echo "  go${version} download"
+    echo ""
+
+    go get "golang.org/dl/go${version}"
+    go${version} download
+  fi
+
+  go_bin_path=$(command -v "go$version")
+  ln -sf "$go_bin_path" "$GOBIN/go"
+  echo "Switched to ${go_bin_path}"
+}
 
 ### Completion
 
