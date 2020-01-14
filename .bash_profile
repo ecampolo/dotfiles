@@ -55,6 +55,7 @@ alias glr='git pull --rebase'
 alias gr='git rebase'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
+alias grb='f(){ git rebase -i $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
 
 alias gm='git merge'
 alias gma='git merge --abort'
@@ -70,6 +71,8 @@ alias gcot='git checkout --track'
 alias grestore='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD) && git clean -df'
 alias gclean='git clean -df'
 alias gmad='grestore && gco master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D'
+
+alias grsb='f(){ git reset $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -126,9 +129,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
-
-# Highlight section titles in manual pages.
-export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
@@ -206,37 +206,41 @@ fi
 # Add tab completion for export variables
 complete -o nospace -S = -W '$(printenv | awk -F= "{print \$1}")' export
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+### Shopt-Builtin (https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html)
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+# Execute a command name that is the name of a directory as if it were the argument to the cd command.
+shopt -s autocd
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
+# Check the window size after each external (non-builtin) command and, if necessary, updates the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # Save all lines of a multiple-line command in the same history entry.
 shopt -s cmdhist
 
-# Use extended pattern matching features.
-shopt -s extglob
-
-# Replaces directory names with the results of word expansion when performing filename completion
+# Replace directory names with the results of word expansion when performing filename completion.
 shopt -s direxpand
 
-# A command name that is the name of a directory is executed as if it were the argument to the cd command.
-shopt -s autocd
+# Attempt spelling correction on directory names during word completion if the directory name initially supplied does not exist.
+shopt -s dirspell
+
+# Use extended pattern matching features.
+shopt -s extglob
 
 # The pattern ** used in a pathname expansion context will match all files and zero or more directories and subdirectories.
 # If the pattern is followed by a /, only directories and subdirectories match.
 shopt -s globstar
 
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend;
+
 # No empty completion
 shopt -s no_empty_cmd_completion
 
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
 
 # Bash prompt
 source ~/.bash_prompt
