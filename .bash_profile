@@ -12,8 +12,8 @@ fi
 
 # Git
 alias g='git'
-alias get='git'
-alias got='git'
+alias got='git' # jon snow uses git
+alias gti='git' # cuz we love sport cars
 alias gs='git status'
 alias gaa='git add -A'
 
@@ -23,8 +23,7 @@ alias gd='git diff'
 alias gds='git diff --staged'
 
 alias gb='git branch'
-alias gba='git branch -a'
-alias gbt='git branch --track'
+alias gbr='git branch -r'
 alias gbm='git branch -m'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
@@ -34,14 +33,14 @@ alias gcm='git commit -m'
 alias gca='git commit --amend'
 alias gcam='git commit --amend -m'
 alias gcanm='git commit --amend --no-edit'
-alias gcwip='git commit -am "WIP"'
 
 alias gac='gaa && gc'
 alias gacm='gaa && gcm'
 alias gaca='gaa && gca'
 alias gacam='gaa && gcam'
 alias gacanm='gaa && gcanm'
-alias gacwip='gaa && gcwip'
+
+alias gw='gaa && gcm "WIP"'
 
 alias gpublish='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gp='git push'
@@ -55,7 +54,6 @@ alias glr='git pull --rebase'
 alias gr='git rebase'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
-alias grb='f(){ git rebase -i $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
 
 alias gm='git merge'
 alias gma='git merge --abort'
@@ -69,10 +67,9 @@ alias gcob='git checkout -b'
 alias gcot='git checkout --track'
 
 alias grestore='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD) && git clean -df'
-alias gclean='git clean -df'
-alias gmad='grestore && gco master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D'
+alias gmad='gco -f develop 2>/dev/null || gco master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D && gf && grestore'
 
-alias grsb='f(){ git reset $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
+alias greb='f(){ git reset $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
