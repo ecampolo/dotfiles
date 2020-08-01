@@ -11,7 +11,6 @@ fi
 ### Aliases
 
 # Git
-alias g='git'
 alias got='git' # jon snow uses git
 alias gti='git' # cuz we love sport cars
 alias gs='git status'
@@ -46,18 +45,9 @@ alias gpublish='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gp='git push'
 alias gpf='git push -f'
 
-alias greplace='gacanm && gpf'
+alias grepl='gacanm && gpf'
 
 alias gl='git pull'
-alias glr='git pull --rebase'
-
-alias gr='git rebase'
-alias gra='git rebase --abort'
-alias grc='git rebase --continue'
-
-alias gm='git merge'
-alias gma='git merge --abort'
-alias gmc='git merge --continue'
 
 alias gf='git fetch --all'
 alias gfp='gf --prune'
@@ -66,27 +56,26 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcot='git checkout --track'
 
-alias grestore='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD) && git clean -df'
-alias gmad='gco -f develop 2>/dev/null || gco master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D && gf && grestore'
+# gsync syncs the current branch with its remote. Local changes (untracked, staged or unstaged files) are discarded. Be careful.
+alias gsync='f(){ local b=$(git rev-parse --abbrev-ref HEAD); git fetch origin $b; git clean -df && git reset --hard origin/$b; unset -f f; }; f'
+# gmad will switch to either develop or master branch if exists, in that order. Then it will remove any other branch except master and develop and run gsync.
+alias gmad='git clean -df && gco -f develop 2>/dev/null || gco -f master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D && gsync'
 
 alias greb='f(){ git reset $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# We always use GNU ls 
+# We always use GNU ls
 alias ls="ls --color=auto"
 
 # List dir contents aliases
 # ref: http://ss64.com/osx/ls.html
-alias l="ls -lFh"
+alias l="ls -lFGhp"
 alias ll="l"
-
-alias lt="ls -lFht"
-alias ltr="ls -lFhtr"
-alias la="ls -laFh"
-alias lat="ls -laFht"
-alias lsd="ls -lhF | grep --color=never '^d'"
+alias lt="ls -lFGhpt"
+alias ltr="ls -lFGhptr"
+alias la="ls -alFGhp"
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -137,7 +126,7 @@ export SDKMAN_DIR="$HOME/.sdkman";
 # Path
 GOPATH="$HOME/go"
 GOBIN="$GOPATH/bin"
-PATH="$GOBIN:/usr/local/go/bin:$PATH"
+PATH="/usr/local/go/bin:$GOBIN:$PATH"
 
 if [ $(uname) = "Darwin" ]; then
 	# Get list of gnubin directories
@@ -153,31 +142,20 @@ export GOBIN
 export PATH
 
 ### Functions
-function switchgo() {
-  version=$1
-  if [ -z $version ]; then
-    echo "Usage: switchgo [version]"
-    return
-  fi
-
-  if ! command -v "go$version" > /dev/null 2>&1; then
-    echo "version does not exist, downloading with commands: "
-    echo "  go get golang.org/dl/go${version}"
-    echo "  go${version} download"
-    echo ""
-
-    go get "golang.org/dl/go${version}"
-    go${version} download
-  fi
-
-  go_bin_path=$(command -v "go$version")
-  ln -sf "$go_bin_path" "$GOBIN/go"
-  echo "Switched to ${go_bin_path}"
+pr() {
+	id=$1
+	if [ -z "$id" ]; then
+		echo "Please provide PR number as argument"
+		return 1
+	fi
+	
+	git fetch origin pull/"${id}"/head:pr-"${id}"
+	git checkout pr-"${id}"
 }
 
 ### Completion
 
-# Loads the system's Bash completion modules.
+# Loads the system's Bash completion modules. Copied from system.completion.bash file from bash-it repository.
 # If Homebrew is installed (OS X), its Bash completion modules are loaded.
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
@@ -245,3 +223,5 @@ source ~/.bash_prompt
 # brew install jump
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
+
+unset -f BREW_PREFIX	

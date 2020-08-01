@@ -1,6 +1,9 @@
 [apply]
     # Detect whitespace errors when applying a patch
 	whitespace = fix
+[branch]
+	# Show most recently changed branches first.
+	sort = -committerdate
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
@@ -21,6 +24,8 @@
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
+	# Default editor for commit messages and other inputs
+    # Even when EDITOR is set to something else
 	editor = vim
 [color]
     # Use colors in Git commands that are capable of colored output when
@@ -33,23 +38,27 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [push]
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	# https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault
 	default = simple
 [include]
 	path = ~/.gitconfig.local
 
 # URL shorthands
 [url "git@github.com:"]
-   insteadOf = "gh:"
-   pushInsteadOf = "github:"
-   pushInsteadOf = "git://github.com/"
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+
 [url "git://github.com/"]
-   insteadOf = "github:"
+	insteadOf = "github:"
+
 [url "git@gist.github.com:"]
-   insteadOf = "gst:"
-   pushInsteadOf = "gist:"
-   pushInsteadOf = "git://gist.github.com/"
+	insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+
 [url "git://gist.github.com/"]
-   insteadOf = "gist:"
+	insteadOf = "gist:"
+
 [url "ssh://git@github.com/"]
    insteadOf = https://github.com/
