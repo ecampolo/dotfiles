@@ -47,7 +47,7 @@ alias gpf='git push -f'
 
 alias grepl='gacanm && gpf'
 
-alias gl='git pull'
+alias gl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 
 alias gf='git fetch --all'
 alias gfp='gf --prune'
@@ -61,7 +61,8 @@ alias grestore='f(){ local b=$(git rev-parse --abbrev-ref HEAD); git fetch origi
 # gmad will switch to either develop or master branch if exists, in that order. Then it will remove any other branch except master and develop and run gsync.
 alias gmad='git clean -df && gco -f develop 2>/dev/null || gco -f master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D && gsync'
 
-alias greb='f(){ git reset $(git merge-base $(git rev-parse --abbrev-ref HEAD) $1); unset -f f; }; f'
+# gsq squash current branch with parent
+alias gsq='git rebase -i $(git merge-base $(git rev-parse --abbrev-ref HEAD) $(basename $(git symbolic-ref refs/remotes/origin/HEAD)))'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
