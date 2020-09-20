@@ -56,8 +56,8 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcot='git checkout --track'
 
-# gsync syncs the current branch with its remote. Local changes (untracked, staged or unstaged files) are discarded. Be careful.
-alias gsync='f(){ local b=$(git rev-parse --abbrev-ref HEAD); git fetch origin $b; git clean -df && git reset --hard origin/$b; unset -f f; }; f'
+# grestore restores the current branch with its remote. Local changes (untracked, staged or unstaged files) are discarded. Be careful.
+alias grestore='f(){ local b=$(git rev-parse --abbrev-ref HEAD); git fetch origin $b; git clean -df && git reset --hard origin/$b; unset -f f; }; f'
 # gmad will switch to either develop or master branch if exists, in that order. Then it will remove any other branch except master and develop and run gsync.
 alias gmad='git clean -df && gco -f develop 2>/dev/null || gco -f master && gb | egrep -v "(master|develop)" | xargs -n 1 git branch -D && gsync'
 
