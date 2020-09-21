@@ -45,7 +45,7 @@ alias gpublish='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gp='git push'
 alias gpf='git push -f'
 
-alias grepl='gacanm && gpf'
+alias greplace='gacanm && gpf'
 
 alias gl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 
